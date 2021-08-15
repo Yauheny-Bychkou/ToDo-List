@@ -6,8 +6,9 @@ const todoСontrol = document.querySelector(".todo-control"),
 
 let todoData = [];
 
-localStorage.removeItem("arr");
 const render = function () {
+  localStorage.setItem("todoData", JSON.stringify(todoData));
+  todoData = JSON.parse(localStorage.getItem("todoData"));
   todoList.textContent = "";
   todoCompleted.textContent = "";
   todoData.forEach(function (item) {
@@ -42,9 +43,6 @@ const render = function () {
 
 todoСontrol.addEventListener("submit", function (event) {
   event.preventDefault();
-  localStorage.setItem("todoData", JSON.stringify(todoData));
-  todoData = JSON.parse(localStorage.getItem("todoData"));
-  console.log("todoData: ", todoData);
 
   const newTodo = {
     value: headerInput.value,
@@ -56,3 +54,4 @@ todoСontrol.addEventListener("submit", function (event) {
     headerInput.value = "";
   }
 });
+render();
