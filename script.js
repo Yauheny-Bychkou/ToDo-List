@@ -9,6 +9,7 @@ let todoData = localStorage.getItem("todoData") ? JSON.parse(localStorage.getIte
 const render = function () {
   todoList.textContent = "";
   todoCompleted.textContent = "";
+
   todoData.forEach(function (item) {
     const li = document.createElement("li");
 
@@ -43,8 +44,8 @@ const render = function () {
       item.completed = !item.completed;
       render();
     });
-    localStorage.setItem("todoData", JSON.stringify(todoData));
   });
+  localStorage.setItem("todoData", JSON.stringify(todoData));
 };
 
 todoСontrol.addEventListener("submit", function (event) {
